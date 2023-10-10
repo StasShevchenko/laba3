@@ -15,10 +15,21 @@ class GroupmateItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          Text('ФИО: ${groupmate.fullName}'),
-          SizedBox(height: 16,),
-          Text('Время создания: ${groupmate.createdTime}')
-        ],),
+            Text('Имя: ${groupmate.name}'),
+            SizedBox(
+              height: 8,
+            ),
+            Text('Фамилия: ${groupmate.lastName}'),
+            SizedBox(
+              height: 8,
+            ),
+            Text('Отчество: ${groupmate.surname}'),
+            SizedBox(
+              height: 16,
+            ),
+            Text('Время создания: ${groupmate.createdTime}')
+          ],
+        ),
       ),
     );
   }

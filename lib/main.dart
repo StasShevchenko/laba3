@@ -9,15 +9,33 @@ Future<void> main() async {
   final database = DatabaseProvider.get();
   await database.groupmates.deleteAll();
   await database.into(database.groupmates).insert(GroupmatesCompanion.insert(
-      fullName: 'Станислав Шевченко', createdTime: DateTime.now().toString()));
+      name: 'Станислав',
+      lastName: 'Шевченко',
+      surname: 'Игоревич',
+      createdTime: DateTime.now().toString()));
   await database.into(database.groupmates).insert(GroupmatesCompanion.insert(
-      fullName: 'Евгений Сендецкий', createdTime: DateTime.now().toString()));
+      name: 'Евгений',
+      lastName: 'Сендецкий',
+      surname: 'Алексеевич',
+      createdTime: DateTime.now().toString()));
   await database.into(database.groupmates).insert(GroupmatesCompanion.insert(
-      fullName: 'Михаил Шаульский', createdTime: DateTime.now().toString()));
+      name: 'Михаил',
+      lastName: 'Шаульский',
+      surname: 'Григорьевич',
+      createdTime: DateTime.now().toString()));
   await database.into(database.groupmates).insert(GroupmatesCompanion.insert(
-      fullName: 'Григорий Боярский', createdTime: DateTime.now().toString()));
-  await database.into(database.groupmates).insert(GroupmatesCompanion.insert(
-      fullName: 'Елена Круг', createdTime: DateTime.now().toString()));
+      name: 'Григорий',
+      lastName: 'Боярский',
+      surname: 'Александрович',
+      createdTime: DateTime.now().toString()));
+  await database.into(database.groupmates).insert(
+        GroupmatesCompanion.insert(
+          name: 'Елена',
+          lastName: 'Круг',
+          surname: 'Сергеевна',
+          createdTime: DateTime.now().toString(),
+        ),
+      );
 
   runApp(const MyApp());
 }
@@ -76,9 +94,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     final database = DatabaseProvider.get();
                     await database.into(database.groupmates).insert(
                         GroupmatesCompanion.insert(
-                            fullName: 'Евгения Агафонова',
+                            name: 'Евгения',
+                            lastName: 'Агафонова',
+                            surname: 'Олеговна',
                             createdTime: DateTime.now().toString()));
-                  }, child: const Text('Добавить одногруппника')),
+                  },
+                  child: const Text('Добавить одногруппника')),
               const SizedBox(
                 height: 16,
               ),
@@ -92,12 +113,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         groupmate = gr;
                       }
                     }
-                    (database.update(database.groupmates)..where((tbl) =>
-                        tbl.id.isValue(groupmate.id))
-                    ).write(GroupmatesCompanion.insert(
-                      fullName: 'Иванов Иван Иванович',
-                        createdTime: DateTime.now().toString()
-                    ));
+                    (database.update(database.groupmates)
+                          ..where((tbl) => tbl.id.isValue(groupmate.id)))
+                        .write(GroupmatesCompanion.insert(
+                            name: 'Иван',
+                            lastName: 'Иванов',
+                            surname: 'Иванович',
+                            createdTime: DateTime.now().toString()));
                   },
                   child: const Text('Заменить последнюю запись'))
             ],
